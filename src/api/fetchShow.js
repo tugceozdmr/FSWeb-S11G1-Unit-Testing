@@ -26,6 +26,7 @@ const fetchShow = () => {
   return axios
     .get("https://api.tvmaze.com/singlesearch/shows?q=stranger+things&embed=episodes")
     .then(res => {
+      if(res.status===200){
       const { data } = res;
 
       return {
@@ -34,6 +35,7 @@ const fetchShow = () => {
         summary: stripTags(data.summary),
         seasons: formatSeasons(data._embedded.episodes)
       };
+    };
     });
 };
 
